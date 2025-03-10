@@ -1,0 +1,73 @@
+
+.kanbanBoard {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.column {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    width: 30%;
+    padding: 10px;
+}
+.userBox {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 0px 10px 0px 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+.userBox:hover {
+    background-color: #bcbcbc;
+    padding: 0px 15px 0px 15px;
+    cursor: pointer;
+}
+.userBox p {
+    margin: 10px;
+}
+.projectBox {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 0px 10px 0px 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+}
+.projectBox:hover {
+    background-color: #bcbcbc;
+    padding: 0px 15px 0px 15px;
+    cursor: pointer;
+}
+.projectBox p {
+    margin: 10px;
+}
+.cards {
+    min-height: 100px;
+}
+.card {
+    background:  #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+    padding: 10px;
+}
+.childElement {
+    opacity: 0;
+}
+
+.fadeInUp {
+    animation: fadeInUp 3s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0.5;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+
+}

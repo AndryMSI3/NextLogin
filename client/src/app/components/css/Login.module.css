@@ -1,0 +1,53 @@
+
+
+.container {
+    padding: 0px 18px 18px 18px;
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 5px 0 1px 0;
+}
+
+.button {
+    background: linear-gradient(to right, #b679de, #00007c);
+    font-size: medium;
+    color: white;
+    padding: 12px 15px;
+    margin: 4px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+/* Avatar image */
+.avatar {
+    width: 20%;
+    border-radius: 50%;
+}
+
+.modalContent {
+    background-color: #fefefe;
+    margin: 1% auto 5% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 35%; /* Could be more or less, depending on screen size */
+}
+
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    top: 48%;
+    left: 50%;
+    z-index: 1000;  /* Sit on top */
+    transform: translate(-50%, -50%);
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: none; /* Enable scroll if needed */
+    padding-top: 35px;
+}
+  

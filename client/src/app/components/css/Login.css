@@ -1,0 +1,57 @@
+body {
+    margin: 0%;
+}
+
+input[type=text]{
+    outline: none;
+    width: 100%;
+    padding: 8px 20px;
+    margin: 12px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+input[type=password]{
+    outline: none;
+    width: 100%;
+    padding: 8px 20px;
+    margin: 12px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+  
+.custom-select .react-select__menu {
+    border-radius: 0 !important;
+}
+
+span.psw {
+    float: right;
+    padding-top: 8px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+span.password, span.privilege {
+    float: right;
+    padding-top: 16px;
+}
+  
+#react-select-2-listbox {
+    border-radius: 0%;
+}
+
+@media screen and (max-width: 300px) {
+    span.password, span.privilege {
+        display: block;
+        float: none;
+    }
+}
+

@@ -1,0 +1,191 @@
+
+.error {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
+  margin-top: 5px;
+}
+.modal {
+  overflow-y: scroll;
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:  rgba(0, 0, 0, 0.5);
+}
+.inputCreateUser{
+  background: linear-gradient(to bottom, rgb(126, 24, 110) 21%, rgb(31, 36, 77) 100%);
+  padding: 8px;
+  height: 50px;
+  width: 20%;
+  font-weight: 50;
+  color: rgb(255, 255, 255);
+  border: none;
+  font-size: medium;
+  font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+}
+.noBoarderRadius {
+  border-radius: 0;
+}
+
+.modalContentForCreateProject form {
+  display: block;
+  background-color: white;
+  padding: 15px;
+}
+.modalContentForCreateUser form {
+  display: flex;
+  background-color: white;
+  padding: 15px;
+}
+
+.modalContentForCreateProject {
+  height: 70%;
+  position: relative;
+  padding: 10px 10px 10px 10px;
+  margin: 2% auto;
+  width: 80%;
+  text-align: left; 
+}
+
+.modalContentForCreateUser {
+  height: 100%;
+  position: relative;
+  padding: 10px 10px 10px 10px;
+  margin: 0% auto;
+  width: 80%;
+  text-align: left; 
+}
+
+.formLabel {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+.formSelect {
+  margin-left: 10Px; 
+  padding: 12px;
+  height: 15px;
+  width: 60%;
+}
+
+.formInput {
+  height: 30px;
+  padding: 4px;
+  font-size: 12px;
+  margin-left: 8px;
+  outline: none;
+}
+
+.modalContent {
+  position: relative;
+  background-color: #fff;
+  padding: 10px 10px 10px 10px;
+  margin: 2% auto;
+  width: 60%;
+  text-align: center; 
+}
+
+.modalContentForm {
+  position: relative;
+  background-color: #fff;
+  padding: 20px;
+  margin: 1% auto ;
+  width:  70%;
+  text-align: left; 
+}
+
+.optionButton {
+  color: black;
+  background: transparent;
+  display: block;
+  margin: 12px 0;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.selectFile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem; /* 2.5 équivaut généralement à 10px, mais à ajuster si tu veux une autre valeur */
+  text-align: center;
+  font-weight: 500; /* équivalent de font-medium */
+  transition: all 0.1s; /* Ajout d'un effet de transition */
+  background-color: transparent;
+  border: 1px solid black; /* Assure-toi que tu définis la couleur primaire */
+  color: black; /* Assure-toi de définir la couleur primaire */
+  padding-bottom: 6px;
+  padding-top: 6px;
+  padding-right: 32px;
+  padding-left: 32px;
+  margin-top: 5px;
+}
+
+.selectFile:hover {
+  cursor: pointer;
+  border: 1px solid black; /* Assure-toi que tu définis la couleur primaire */
+  background-color:rgba(0, 0, 0, 0.211); /* effet de survol, bg-primary/10 */
+}
+
+.selectFile:focus {
+  outline: none; /* Suppression du contour par défaut lors du focus */
+}
+
+.optionButton:hover {
+  color: black;
+  background-color:  #f0f0f0;
+}
+
+.optionButton.selected {
+  background-color: #4caf50;
+  color: #fff;
+}
+.closeButton {
+  float: right;
+  padding: 5px;
+  margin: 0;
+  color: black;
+  height: fit-content;
+  justify-content: flex-end;
+  width: 100%; 
+  display: flex;
+  background: none;
+  border: none;
+  font-size: 18px;
+  position: relative;
+  cursor: pointer;
+}
+.closeButtonChooseModal {
+  float: right;
+  padding: 5px;
+  margin: 0;
+  color: black;
+  height: fit-content;
+  width: fit-content; 
+  background: none;
+  border: none;
+  font-size: 18px;
+  position: absolute;
+  top: -2px;
+  right: 0px;
+  cursor: pointer;
+}
+.submitButton {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px 16px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+  float: right; 
+}
