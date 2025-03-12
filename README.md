@@ -1,12 +1,13 @@
-NextLogin
-Une petite application web développée avec React, Next.js et TypeScript pour le frontend, et Express avec TypeScript pour le backend. L'application propose une authentification basique avec la possibilité de créer un utilisateur et de se déconnecter.
-Une version Electron est également disponible pour un test rapide sans nécessiter l'installation de Node.js ou npm.
-🛠️ Technologies utilisées
-• Next.js 
-• CSS/Styled Components/Tailwind 
-• Fetch API Backend
-• Express.js 
-• MySQL 
+<h1>NextLogin</h1>
+Une petite application web développée avec React, Next.js et TypeScript pour le frontend, et Express avec TypeScript pour le backend. L'application propose une authentification basique avec la possibilité de créer un utilisateur et de se déconnecter.<br><br>
+🛠️ Technologies utilisées<br>
+<ul>
+<li>Next.js</li> 
+<li>CSS/Styled Components/Tailwind </li>
+<li>Fetch API Backend</li>
+<li>Express.js</li>
+<li>MySQL</li>
+</ul>
 📌 Crédits
 • Ce projet utilise le template **NextAdmin**.  
 • 📌 [Lien vers NextAdmin]( https://github.com/NextAdminHQ/nextjs-admin-dashboard) 
