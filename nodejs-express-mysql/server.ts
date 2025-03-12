@@ -24,6 +24,46 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const createDefaultAdmin = () => {
+    sql.query("SELECT COUNT(*) AS count FROM utilisateur",[],(err, rows) => {
+        if (err) {
+            console.error("❌ Erreur lors de la vérification des utilisateurs :", err);
+            return;
+        }
+
+        if (rows[0].count === 0) {
+            console.log("⚠️ Aucun utilisateur trouvé. Création d'un administrateur par défaut...");
+
+            const defaultUserName = "admin";
+            const defaultPassword = "P@ssw0rd"; // À changer après la première connexion
+            const defaultPrivilege = 2;
+            const defaultUserPicture = "";
+
+            bcrypt.hash(defaultPassword, SALT_ROUNDS, (err, hashedPassword) => {
+                if (err) {
+                    console.error("❌ Erreur lors du hachage du mot de passe :", err);
+                    return;
+                }
+
+                sql.query(
+                    "INSERT INTO utilisateur (user_name, password, privilege, user_picture) VALUES (?, ?, ?, ?)",
+                    [defaultUserName, hashedPassword, defaultPrivilege, defaultUserPicture],
+                    (err) => {
+                        if (err) {
+                            console.error("❌ Erreur lors de la création de l'admin :", err);
+                        } else {
+                            console.log("✅ Administrateur par défaut créé avec succès !");
+                        }
+                    }
+                );
+            });
+        } else {
+            console.log("✅ Utilisateurs déjà présents. Aucune action requise.");
+        }
+    });
+};
+
+createDefaultAdmin();
 
 app.post(
     "/api/users/create", 
@@ -69,10 +109,6 @@ app.post(
     });
 });
 
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to Andry's application" });
-});
-
 // Routes API
 app.use("/users", userRoutes);
 
@@ -80,4 +116,4 @@ const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
-});
+}); 
