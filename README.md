@@ -1,8 +1,6 @@
 <h1>NextLogin</h1>
 <p>Une petite application web développée avec <strong>React</strong>, <strong>Next.js</strong> et <strong>TypeScript</strong> pour le frontend, et <strong>Express</strong> avec <strong>TypeScript</strong> pour le backend. L'application propose une authentification basique avec la possibilité de créer un utilisateur et de se déconnecter.</p>
 
-<br><br>
-
 <h2>🛠️ Technologies utilisées</h2>
 <ul>
     <li><strong>Next.js</strong></li>
