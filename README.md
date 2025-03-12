@@ -1,38 +1,53 @@
 <h1>NextLogin</h1>
-Une petite application web développée avec React, Next.js et TypeScript pour le frontend, et Express avec TypeScript pour le backend. L'application propose une authentification basique avec la possibilité de créer un utilisateur et de se déconnecter.<br><br>
-🛠️ Technologies utilisées<br>
+<p>Une petite application web développée avec <strong>React</strong>, <strong>Next.js</strong> et <strong>TypeScript</strong> pour le frontend, et <strong>Express</strong> avec <strong>TypeScript</strong> pour le backend. L'application propose une authentification basique avec la possibilité de créer un utilisateur et de se déconnecter.</p>
+
+<br><br>
+
+<h2>🛠️ Technologies utilisées</h2>
 <ul>
-<li>Next.js</li> 
-<li>CSS/Styled Components/Tailwind </li>
-<li>Fetch API Backend</li>
-<li>Express.js</li>
-<li>MySQL</li>
+    <li><strong>Next.js</strong></li>
+    <li><strong>CSS / Styled Components / Tailwind</strong></li>
+    <li><strong>Fetch API Backend</strong></li>
+    <li><strong>Express.js</strong></li>
+    <li><strong>MySQL</strong></li>
 </ul>
-📌 Crédits
-• Ce projet utilise le template **NextAdmin**.  
-• 📌 [Lien vers NextAdmin]( https://github.com/NextAdminHQ/nextjs-admin-dashboard) 
-Merci aux créateurs pour leur travail !  
-📌 Fonctionnalités
-✅ Connexion utilisateur
-✅ Création d'un utilisateur
-✅ Déconnexion
-🚀 Installation et exécution
-1️⃣  Cloner le dépôt
-git clone https://github.com/AndryMSI3/NextLogin.git
-2️⃣  Installer les dépendances
-🔹 Frontend 
-cd client
-npm install
-npm run dev
-🔹 Backend
-cd nodejs-express-mysql
-npm install
-ts-node server.ts
-🏗️ Structure du projet
+
+<h2>📌 Crédits</h2>
+<p>• Ce projet utilise le template <strong>NextAdmin</strong>.</p>
+<p>• <a href="https://github.com/NextAdminHQ/nextjs-admin-dashboard" target="_blank">Lien vers NextAdmin</a></p>
+<p>Merci aux créateurs pour leur travail !</p>
+
+<h2>📌 Fonctionnalités</h2>
+<ul>
+    <li>✅ Connexion utilisateur</li>
+    <li>✅ Création d'un utilisateur</li>
+    <li>✅ Déconnexion</li>
+</ul>
+
+<h2>🚀 Installation et exécution</h2>
+<ol>
+    <li><strong>Cloner le dépôt</strong><br>
+        <code>git clone https://github.com/AndryMSI3/NextLogin.git</code>
+    </li>
+    <li><strong>Installer les dépendances</strong><br>
+        <strong>Frontend :</strong><br>
+        <code>cd client</code><br>
+        <code>npm install</code><br>
+        <code>npm run dev</code><br>
+        <strong>Backend :</strong><br>
+        <code>cd nodejs-express-mysql</code><br>
+        <code>npm install</code><br>
+        <code>ts-node server.ts</code>
+    </li>
+</ol>
+
+<h2>🏗️ Structure du projet</h2>
+<pre>
 NextLogin/
 │── client/  # Next.js (React + TypeScript)
 │── nodejs-express-mysql/   # Express.js (TypeScript)
 │── README.md
-📜 Licence
-Ce projet est sous licence MIT.
+</pre>
 
+<h2>📜 Licence</h2>
+<p>Ce projet est sous licence <strong>MIT</strong>.</p>
