@@ -27,6 +27,23 @@
     <li><strong>Cloner le dépôt</strong><br>
         <code>git clone https://github.com/AndryMSI3/NextLogin.git</code>
     </li>
+    <li><strong>Configurer le backend</strong><br>
+        Avant d'installer les dépendances, créer les fichiers suivants :
+        <br>
+        <strong>Fichier <code>.env</code> :</strong>
+        <pre>
+DB_HOST=le_nom_de_votre_localhost
+DB_USER=votre_nom_utilisateur_de_la_base_de_donnée
+DB_PASSWORD=mot_de_passe_de_votre_base_de_donnée
+DB_NAME=nextLogin
+        </pre>
+        <strong>Fichier <code>.my.cnf</code> :</strong>
+        <pre>
+[client]
+user = votre_nom_utilisateur_de_la_base_de_donnée
+password = mot_de_passe_de_votre_base_de_donnée
+        </pre>
+    </li>
     <li><strong>Installer les dépendances</strong><br>
         <strong>Frontend :</strong><br>
         <code>cd client</code><br>
