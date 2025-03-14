@@ -5,29 +5,39 @@ import { Request, Response } from "express";
 type MySqlCustomError = MysqlError & { kind?: string };
 
 interface userData {
-    user_name:string;
+    user_name: string;
     password: string;
     privilige: number;
     user_picture: string;
 }
 
+/**
+ * Le contrôleur sert d'intermédiaire entre le modèle et les routes.
+ * Il filtre les données envoyées au modèle et transmet les erreurs du modèle à l'application.
+ */
+
+/**
+ * Recherche un utilisateur par son ID.
+ * Vérifie que l'ID est bien fourni avant d'effectuer la requête.
+ * Renvoie une erreur si l'utilisateur n'est pas trouvé ou si une erreur serveur survient.
+ */
 exports.findUser = (req: Request, res: Response) => {
     if (!req.params.id) {
         return res.status(400).send({
-            message: "Veuillez donnez un ID!"
+            message: "Veuillez fournir un ID !"
         });
     } 
 
-    User.findById(req.params.id, (err: MySqlCustomError| null, userData: userData | null) => {
+    User.findById(req.params.id, (err: MySqlCustomError | null, userData: userData | null) => {
         if (err) {
             if (err.kind === "not_found") {
                 return res.status(404).send({
-                    message: "Aucun utilisateur avec cette ID !"
+                    message: "Aucun utilisateur trouvé avec cet ID."
                 });
             } else {
-                console.error("Erreur lors de la connexion :", err);
+                console.error("Erreur lors de la recherche de l'utilisateur :", err);
                 return res.status(500).send({
-                    message: "Erreur interne du serveur"
+                    message: "Erreur interne du serveur."
                 });
             }
         } else {
@@ -36,26 +46,30 @@ exports.findUser = (req: Request, res: Response) => {
     });
 };
 
+/**
+ * Gère l'authentification d'un utilisateur.
+ * Vérifie que les champs 'user_name' et 'password' sont renseignés.
+ * Renvoie une erreur si les informations sont incorrectes ou si une erreur serveur survient.
+ */
 exports.login = (req: Request, res: Response) => {
     console.log(req.body);
-    // Valide la requête
-    if (!req.body || req.body.password == '' || req.body.user_name == '') {
+
+    if (!req.body || req.body.password === '' || req.body.user_name === '') {
         return res.status(400).send({
-            message: "Le contenu ne peut pas être vide !"
+            message: "Le nom d'utilisateur et le mot de passe sont requis."
         });
     } 
 
-    // Teste si l'utilisateur existe dans la base de données
-    User.login(req.body, (err: MySqlCustomError| null, userData: userData | null) => {
+    User.login(req.body, (err: MySqlCustomError | null, userData: userData | null) => {
         if (err) {
             if (err.name === "not_found") {
                 return res.status(404).send({
-                    message: "Nom d'utilisateur ou mot de passe incorrect"
+                    message: "Nom d'utilisateur ou mot de passe incorrect."
                 });
             } else {
                 console.error("Erreur lors de la connexion :", err);
                 return res.status(500).send({
-                    message: "Erreur interne du serveur"
+                    message: "Erreur interne du serveur."
                 });
             }
         } else {
@@ -64,56 +78,15 @@ exports.login = (req: Request, res: Response) => {
     });
 };
 
-
-exports.findAll = (req: Request, res: Response) => {
-    const username = req.query.username;
-
-    User.getAll(username, (err: MySqlCustomError | null, data: userData[] | null) => {
-        if (err) {
-            return res.status(500).send({
-                message: err.message || "Une erreur est survenue lors de la récupération des utilisateurs."
-            });
-        } else {
-            return res.send(data);
-        }
-    });
-};
-
-exports.findAllPrivilege = (req: Request, res: Response) => {
-    User.getAllPrivilege((err: MySqlCustomError | null, data: userData[] | null ) => {
-        if (err) {
-            return res.status(500).send({
-                message: err.message || "Une erreur est survenue lors de la récupération des utilisateurs avec privilège."
-            });
-        } else {
-            return res.send(data);
-        }
-    });
-};
-
-exports.findOne = (req: Request, res: Response) => {
-    User.findById(req.params.id, (err: MySqlCustomError | null, data: userData | null) => {
-        if (err) {
-            if (err.kind === "not_found") {
-                return res.status(404).send({
-                    message: `Utilisateur avec l'ID ${req.params.id} non trouvé.`
-                });
-            } else {
-                return res.status(500).send({
-                    message: "Erreur lors de la récupération de l'utilisateur avec l'ID " + req.params.id
-                });
-            }
-        } else {
-            return res.send(data);
-        }
-    });
-};
-
+/**
+ * Met à jour les informations d'un utilisateur.
+ * Vérifie que l'ID et les nouvelles données sont bien fournis.
+ * Renvoie une erreur si l'utilisateur n'existe pas ou en cas d'erreur serveur.
+ */
 exports.update = (req: Request, res: Response) => {
-    // Valide la requête
-    if (!req.body) {
+    if (!req.body || !req.params.id) {
         return res.status(400).send({
-            message: "Le contenu ne peut pas être vide !"
+            message: "Les données de mise à jour sont requises."
         });
     }
 
@@ -128,7 +101,7 @@ exports.update = (req: Request, res: Response) => {
                     });
                 } else {
                     return res.status(500).send({
-                        message: "Erreur lors de la mise à jour de l'utilisateur avec l'ID " + req.params.id
+                        message: `Erreur lors de la mise à jour de l'utilisateur avec l'ID ${req.params.id}.`
                     });
                 }
             } else {
@@ -138,6 +111,11 @@ exports.update = (req: Request, res: Response) => {
     );
 };
 
+/**
+ * Supprime un utilisateur de la base de données.
+ * Vérifie que l'ID est bien fourni.
+ * Renvoie une erreur si l'utilisateur n'existe pas ou en cas d'erreur serveur.
+ */
 exports.delete = (req: Request, res: Response) => {
     User.remove(req.params.id, (err: MySqlCustomError, data: userData | null) => {
         if (err) {
@@ -147,23 +125,11 @@ exports.delete = (req: Request, res: Response) => {
                 });
             } else {
                 return res.status(500).send({
-                    message: "Erreur lors de la suppression de l'utilisateur avec l'ID " + req.params.id
+                    message: `Erreur lors de la suppression de l'utilisateur avec l'ID ${req.params.id}.`
                 });
             }
         } else {
             return res.send({ message: "Utilisateur supprimé avec succès !" });
-        }
-    });
-};
-
-exports.deleteAll = (req: Request, res: Response) => {
-    User.removeAll((err: MySqlCustomError | null, data: userData[] | null) => {
-        if (err) {
-            return res.status(500).send({
-                message: err.message || "Une erreur est survenue lors de la suppression de tous les utilisateurs."
-            });
-        } else {
-            return res.send({ message: "Tous les utilisateurs ont été supprimés avec succès !" });
         }
     });
 };
