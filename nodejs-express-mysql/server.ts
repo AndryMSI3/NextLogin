@@ -4,7 +4,6 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import sql = require("./app/models/db");
-import mysql, { RowDataPacket } from "mysql2"; // Importation de mysql2
 import multer from "multer";
 import { validationResult } from "express-validator";
 import bcrypt from "bcrypt";
@@ -55,12 +54,6 @@ const SALT_ROUNDS = 10;
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: process.env.DB_USER,        // Utilisateur MySQL
-    password: process.env.DB_PASSWORD // Mot de passe de l'utilisateur
-});
   
 // Vérifier si la base de données existe et la créer si nécessaire
 const checkAndCreateDatabase = () => {
@@ -76,25 +69,24 @@ const checkAndCreateDatabase = () => {
   
       if (rows.length > 0) {
         console.log(`✅ La base de données "${databaseName}" existe déjà.`);
+        sql.useDatabase(databaseName,(err)=>{
+          if (err) {
+            console.log(`❌ Erreur lors de la connexion à la base de données "${databaseName}"`);
+            return;   
+          }
+          console.log(`✅ connexion à la de données ${databaseName} réussi.`);
+        })
+
       } else {
         console.log(`❌ La base de données "${databaseName}" n'existe pas.`);
         // Créer la base de données si elle n'existe pas
-        connection.query(`CREATE DATABASE ${databaseName}`, (err) => {
+        sql.query(`CREATE DATABASE ?`,[databaseName],(err) => {
           if (err) {
             console.error('❌ Erreur lors de la création de la base de données:', err);
             return;
           }
           console.log(`🛠 Base de données "${databaseName}" créée.`);
-          // Une fois la base de données créée, se reconnecter à la nouvelle base
-          connection.changeUser({ database: databaseName }, (err) => {
-            if (err) {
-              console.error('❌ Erreur lors de la reconnexion à la base de données:', err);
-            } else {
-              console.log(`✅ Connexion réussie à la base de données "${databaseName}".`);
-              // Importer le backup dans la base de données
-              importBackup();
-            }
-          });
+          importBackup();
         });
       }
     });
@@ -142,6 +134,10 @@ app.post(
     const userName = req.body.userName;
     const password = req.body.passWord;
     const privilege = req.body.privilege;
+
+    /**
+     * bcrypt est utilisé pour pouvoir hashé les mots de passe
+     */
     bcrypt.genSalt(SALT_ROUNDS, (err, salt) => {
         if (err) {
             console.log("error:", err);
