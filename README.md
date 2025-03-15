@@ -28,7 +28,7 @@
         <code>git clone https://github.com/AndryMSI3/NextLogin.git</code>
     </li>
     <li><strong>Configurer le backend</strong><br>
-        Avant d'installer les dépendances, créer les fichiers suivants :
+        Avant d'installer les dépendances, créer les fichiers suivants à la racine:
         <br>
         <strong>Fichier <code>.env</code> :</strong>
         <pre>
